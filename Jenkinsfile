@@ -6,6 +6,12 @@ pipeline {
     }
 
     stages {
+        stage('Environment Check') {
+            steps {
+                bat 'docker --version'
+                bat 'docker-compose --version'
+            }
+        }
         stage('Checkout') {
             steps {
                 // Jenkins usually handles this via the job configuration
