@@ -22,6 +22,8 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                 script {
+                    echo 'Cleaning up existing containers...'
+                    bat "${DOCKER_COMPOSE} down --remove-orphans"
                     echo 'Starting Docker Compose Build and Deploy...'
                     // Build and run in detached mode
                     bat "${DOCKER_COMPOSE} up --build -d"
